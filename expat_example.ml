@@ -1,3 +1,4 @@
+open Core.Std
 open Ctypes
 open Foreign
 
@@ -38,5 +39,4 @@ let end_handler _ _ =
   decr depth
 
 let () =
-  parse_string ~start_handler ~end_handler
-    Batteries.(Enum.fold (^) "" (File.lines_of Sys.argv.(1)))
+  parse_string ~start_handler ~end_handler (In_channel.input_all stdin)
